@@ -1,0 +1,8 @@
+certifi==2021.5.30
+dnspython>=1.16.0
+Flask==2.0.1
+Flask-Cors==3.0.10
+gunicorn==20.1.0
+pymongo[srv]==3.12.0
+google-cloud-language==2.10.0
+sumy==0.8.1
