@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.cdnfonts.com/css/hammersmith-one" rel="stylesheet">
+    <title>Review Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchForm').submit(function(event) {
+                event.preventDefault();
+                var query = $('#searchInput').val();
+                searchReviews(query);
+            });
+
+            function searchReviews(query) {
+                var requestData = { searchQuery: query };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function(data) {
+                        var results = $('#results');
+                        results.empty();
+
+                        if (data.results.length === 0) {
+                            results.append('<p>No results found.</p>');
+                        } else {
+                            data.results.forEach(function(result) {
+                                var resultHtml = '<div class="result">' +
+                                    '<h3>Star Rating: ' + result['Star-rating'] + '</h3>' +
+                                    '<p>Review Title: ' + result['Review Title'] + '</p>' +
+                                    '<p>Review Content: ' + result['Review Content'] + '</p>' +
+                                    '</div>';
+                                results.append(resultHtml);
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+   
+   
+ <!CSS>  
+    <style>
+        .result {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+
+    .search-container {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+    }
+        
+    input[type="text"] {
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+      display: inline;
+      font-size: 20px;
+      border-radius: 45px;        
+}   
+
+    input[type="submit"] {
+      margin: 0 auto;
+      text-align: center;
+      display: inline;
+      font-size: 20px;
+         
+}   
+ 
+    body{
+    margin: 0px
+    }
+   
+   h1{
+   font-family: Hammersmith One
+   } 
+    
+    
+    p {
+    text-align: center;
+    font-family: Hammersmith One;
+    }
+    
+    
+    </style>
+</head>
+
+
+
+
+<!HTML>
+<body>
+<div style="width: 1440px; height: 1024px; position: relative; background: #EDF4F2">
+
+<div style="width:220px; height: 150px; top: 50px; left: 50px; position: absolute;">
+<center><a href="https://www.amazon.com/essence-Extreme-Mascara-Crazy-Cruelty/dp/B00GSUCEJ6">
+<img style="width:100px" src="https://storage.googleapis.com/theswayedapp/assets/extreme.png"></a></center><p>I love Extreme Volume Mascara-Essence (4.2)</p></div>
+
+<div style="width:220px; height: 150px; top: 230px; left: 50px; position: absolute;">
+<center><a href="https://www.amazon.com/Tarte-Maneater-Magnetic-Voluptuous-Mascara/dp/B01KPEG108">
+<img style="width:100px" src="https://storage.googleapis.com/theswayedapp/assets/maneater.png"></a></center><p>Maneater Mascara-Tarte (4.4)</p></div>
+ 
+ <div style="width:220px; height: 150px; top: 410px; left: 50px; position: absolute;">
+ <center><a href="https://www.amazon.com/essence-Princess-Effect-Mascara-Cruelty/dp/B00T0C9XRK">
+ <img style="width:100px" src="https://storage.googleapis.com/theswayedapp/assets/lash_princess.png"></a></center><p>Lash Princess False Effect Mascara-Essence (4.3)</p></div>
+ 
+ <div style="width:220px; height: 150px; top: 580px; left: 50px; position: absolute;"> 
+ <center><a href="https://www.amazon.com/Maybelline-New-York-Washable-Blackest/dp/B00AQ9S93A">
+ <img style="width:100px" src="https://storage.googleapis.com/theswayedapp/assets/maybelline.png"></a></center><p>New York Volume Express Ultra Volume-Maybelline (4.2)</p></div>
+  
+  <div style="width:220px; height: 150px; top: 830px; left: 50px; position: absolute;">
+   <center><a href="https://www.amazon.com/Sigma-Beauty-Sinuosity-Curling-Mascara/dp/B013VRUHX8">
+   <img style="width:100px" src="https://storage.googleapis.com/theswayedapp/assets/sinuosity.png"></a></center><p>Sinuosity Lash Mascara-Sigma Beauty (3.7)</p></div>
+ 
+ <!Query box>
+   <div class="search-container" style="width: 550px; height: 500px; left:300px; top: 50px; position:absolute; background: #81E1E1;">
+    <h1>Review Search</h1>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter search query">
+        <input type="submit" value="Search">
+    </form>
+    <div id="results"></div>
+    </div>
+
+<!L'Oreal Stock>
+<div style="width: 550px; height: 400px; left:300px; top: 600px; position:absolute;">
+<img style="width: 550px;" src="https://storage.googleapis.com/theswayedapp/assets/stock.jpg">
+</div>
+
+<!Sentiment Timeline>
+<div style="width: 450px; height: 400px; left:900px; top: 50px; position:absolute;">
+<img style="width: 450px;" src="https://storage.googleapis.com/theswayedapp/assets/Sentiment.jpg">
+</div>
+
+<!Price Bar Chart>
+<div style="width: 450px; height: 400px; left:900px; top: 600px; position:absolute;">
+<img style="width: 450px;" src="https://storage.googleapis.com/theswayedapp/assets/product_insights.jpg">
+</div>
+
+</div>
+</body>
+</html>
+
